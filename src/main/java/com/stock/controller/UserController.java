@@ -23,13 +23,13 @@ public class UserController {
 	        return userService.saveUser(user);
 	    }
 
-	    @GetMapping("/user/{username}")
-	    public User getUser(@PathVariable String username) throws ExecutionException, InterruptedException {
-	        return userService.getUser(username);
+	    @GetMapping("/user/{email}")
+	    public User getUser(@PathVariable String email) throws ExecutionException, InterruptedException {
+	        return userService.getUser(email);
 	    }
 
-	    @PostMapping("/user/{username}/prediction")
-	    public String addPrediction(@PathVariable String username, @RequestBody Prediction prediction) throws ExecutionException, InterruptedException {
-	        return userService.addPrediction(username, prediction);
+	    @PostMapping("/user/{email}/prediction")
+	    public String addPrediction(@PathVariable String email, @RequestBody Prediction prediction) throws ExecutionException, InterruptedException {
+	        return userService.addPrediction(email, prediction);
 	    }
 }

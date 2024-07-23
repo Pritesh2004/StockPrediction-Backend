@@ -21,7 +21,7 @@ public class UserService {
 
 	 public String saveUser(User user) throws ExecutionException, InterruptedException {
 	        Firestore dbFirestore = FirestoreClient.getFirestore();
-	        DocumentReference documentReference = dbFirestore.collection(COLLECTION_NAME).document(user.getUsername());
+	        DocumentReference documentReference = dbFirestore.collection(COLLECTION_NAME).document(user.getEmail());
 
 	        // Check if the user already exists
 	        ApiFuture<com.google.cloud.firestore.DocumentSnapshot> future = documentReference.get();
@@ -39,9 +39,9 @@ public class UserService {
 	        }
 	    }
 
-	    public User getUser(String username) throws ExecutionException, InterruptedException {
+	    public User getUser(String email) throws ExecutionException, InterruptedException {
 	        Firestore dbFirestore = FirestoreClient.getFirestore();
-	        DocumentReference documentReference = dbFirestore.collection(COLLECTION_NAME).document(username);
+	        DocumentReference documentReference = dbFirestore.collection(COLLECTION_NAME).document(email);
 	        ApiFuture<com.google.cloud.firestore.DocumentSnapshot> future = documentReference.get();
 	        com.google.cloud.firestore.DocumentSnapshot document = future.get();
 	        User user = null;
@@ -51,9 +51,9 @@ public class UserService {
 	        return user;
 	    }
 
-	    public String addPrediction(String username, Prediction prediction) throws ExecutionException, InterruptedException {
+	    public String addPrediction(String email, Prediction prediction) throws ExecutionException, InterruptedException {
 	        Firestore dbFirestore = FirestoreClient.getFirestore();
-	        DocumentReference documentReference = dbFirestore.collection(COLLECTION_NAME).document(username);
+	        DocumentReference documentReference = dbFirestore.collection(COLLECTION_NAME).document(email);
 	        ApiFuture<com.google.cloud.firestore.DocumentSnapshot> future = documentReference.get();
 	        com.google.cloud.firestore.DocumentSnapshot document = future.get();
 	        if (document.exists()) {
